@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "core-s-g031",
+  "name": "Core-S G031",
+  "role": "core",
+  "productVersion": "v1",
+  "pcbRevision": "Rev0",
+  "designStatus": "frozen",
+  "verificationStatus": "unverified",
+  "hardwareStatus": "boards-ordered",
+  "summary": {
+    "en": "The first STM32G031-based Core-S implementation, providing the MCU and the circuitry required for its intended operating configuration.",
+    "ja": "STM32G031を搭載し、想定動作構成に必要なMCUと周辺回路をまとめた、最初のCore-S実装です。"
+  },
+  "repository": "https://github.com/craftvia/craftvia-core-s-g031",
+  "sourceRef": "main",
+  "image": "docs/images/core-s-g031-v1-rev0-3d.webp",
+  "documents": {
+    "specification": {
+      "en": "docs/specification-v1-rev0.md",
+      "ja": "docs/specification-v1-rev0.ja.md"
+    },
+    "verificationPlan": {
+      "en": "docs/verification-plan-v1-rev0.md",
+      "ja": "docs/verification-plan-v1-rev0.ja.md"
+    },
+    "releaseNotes": "RELEASE_NOTES.md"
+  }
+}
