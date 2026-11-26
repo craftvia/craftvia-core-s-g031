@@ -37,7 +37,7 @@ Development-only functions such as the debugger, USB interface, operator control
 - Default clock: internal HSI; external 8 MHz oscillator option is DNP
 - CAD source: EasyEDA
 
-The normative mechanical and electrical requirements belong in the [CraftVia common documentation](https://github.com/craftvia/craftvia-docs). See the Rev0 [`specification`](docs/specification-v1-rev0.md) and [`verification plan`](docs/verification-plan-v1-rev0.md) for the product-specific pin mapping, options, limitations, and acceptance tests.
+The normative mechanical and electrical requirements belong in the [CraftVia common documentation](https://github.com/craftvia/craftvia-docs). The [Core definition YAML](docs/core-s-g031-v1-rev0.yaml) records the Rev0 external specification. See the [released specification](docs/specification-v1-rev0.md) and [verification plan](docs/verification-plan-v1-rev0.md) for release details and acceptance tests.
 
 ## Repository layout
 

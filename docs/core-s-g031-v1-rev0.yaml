@@ -1,0 +1,128 @@
+# External specification for the frozen G031 Rev0 standard configuration.
+# Alternative clock options are draft and require matching HSE Bypass settings.
+schema_version: 1
+
+kind: core_definition
+
+status: draft
+
+core:
+  id: core-s-g031
+  version: v1
+  pcb_revision: Rev0
+  part_number: STM32G031K8T6
+  package: LQFP32
+  configuration: internal_hsi
+
+hardware_status:
+  design: frozen
+  verification: unverified
+
+profile_catalog_ref: "https://raw.githubusercontent.com/craftvia/craftvia-docs/c3eb5de34f23bde8239330162cf61108a8a2372b/standards/core-s-development-profiles-v1.yaml"
+
+interface_ref: "https://raw.githubusercontent.com/craftvia/craftvia-docs/c3eb5de34f23bde8239330162cf61108a8a2372b/standards/core-s-interface-v1.md"
+
+verification_plan_ref: "./verification-plan-v1-rev0.md"
+
+requirements:
+  platform_interface: core-s-v1
+  board_outline_mm: {width: 25.4, height: 25.4}
+  nominal_supply_v: 3.3
+  recovery_path: north_swd
+
+contacts:
+  K-NW: {state: assigned, role: gnd, device_pin: VSS/VSSA, package_pin: 5}
+  K-NE: {state: assigned, role: gnd, device_pin: VSS/VSSA, package_pin: 5}
+  K-SW: {state: assigned, role: power_input, device_pin: VDD/VDDA, package_pin: 4}
+  N1: {state: assigned, role: reset, direction: input, device_pin: PF2-NRST, package_pin: 6, active_level: low, details_ref: "./specification-v1-rev0.md#5-swd-reset-and-boot"}
+  N2: {state: assigned, role: swdio, direction: bidirectional, device_pin: PA13, package_pin: 24}
+  N3: {state: assigned, role: swclk, direction: input, device_pin: PA14-BOOT0, package_pin: 25, shared_mcu_node: PA14-BOOT0, details_ref: "./specification-v1-rev0.md#5-swd-reset-and-boot"}
+  N4: {state: assigned, role: boot_request, direction: input, device_pin: PA14-BOOT0, package_pin: 25, active_level: high, shared_mcu_node: PA14-BOOT0, details_ref: "./specification-v1-rev0.md#5-swd-reset-and-boot"}
+  N5: {state: assigned, role: gpio, device_pin: PA11, package_pin: 22}
+  N6: {state: assigned, role: gpio, device_pin: PA12, package_pin: 23}
+  N7: {state: assigned, role: gpio, device_pin: PB8, package_pin: 32}
+  N8: {state: nc}
+  E1: {state: assigned, role: gpio, device_pin: PA0, package_pin: 7}
+  E2: {state: assigned, role: gpio, device_pin: PA1, package_pin: 8}
+  E3: {state: assigned, role: gpio, device_pin: PA2, package_pin: 9}
+  E4: {state: assigned, role: gpio, device_pin: PA3, package_pin: 10}
+  E5: {state: assigned, role: gpio, device_pin: PA4, package_pin: 11}
+  E6: {state: assigned, role: gpio, device_pin: PA5, package_pin: 12}
+  E7: {state: assigned, role: gpio, device_pin: PA6, package_pin: 13}
+  E8: {state: assigned, role: gpio, device_pin: PA7, package_pin: 14}
+  S1: {state: assigned, role: gpio, device_pin: PA8, package_pin: 18}
+  S2: {state: assigned, role: gpio, device_pin: PB0, package_pin: 15}
+  S3: {state: assigned, role: gpio, device_pin: PB1, package_pin: 16}
+  S4: {state: assigned, role: gpio, device_pin: PC6, package_pin: 20}
+  S5: {state: assigned, role: gpio, device_pin: PB2, package_pin: 17}
+  S6: {state: assigned, role: gpio, device_pin: PB9, package_pin: 1}
+  S7: {state: assigned, role: gpio, device_pin: PC14-OSC32_IN, package_pin: 2}
+  S8: {state: assigned, role: gpio, device_pin: PC15-OSC32_OUT, package_pin: 3}
+  W1: {state: assigned, role: gpio, device_pin: PA9, package_pin: 19}
+  W2: {state: assigned, role: gpio, device_pin: PA10, package_pin: 21}
+  W3: {state: assigned, role: gpio, device_pin: PB6, package_pin: 30}
+  W4: {state: assigned, role: gpio, device_pin: PB7, package_pin: 31}
+  W5: {state: assigned, role: gpio, device_pin: PB3, package_pin: 27}
+  W6: {state: assigned, role: gpio, device_pin: PB4, package_pin: 28}
+  W7: {state: assigned, role: gpio, device_pin: PB5, package_pin: 29}
+  W8: {state: assigned, role: gpio, device_pin: PA15, package_pin: 26}
+
+unexposed_pins: {}
+
+boot_storage:
+  location: on_chip
+  capacity_bytes: 65536
+
+circuits:
+  external_hse_oscillator:
+    kind: oscillator_module
+    frequency_hz: 8000000
+    clock_mode: hse_bypass
+    mcu_connections:
+      oscillator_input: {device_pin: PC14-OSC32_IN, package_pin: 2}
+      oscillator_enable: {device_pin: PC15-OSC32_OUT, package_pin: 3, only_in: [external_mcu_controlled]}
+    assembly:
+      default: {requirement: optional, default_population: dnp}
+      external_always_on: {requirement: required, default_population: fit}
+      external_mcu_controlled: {requirement: required, default_population: fit}
+
+configurations:
+  external_always_on:
+    status: candidate
+    oscillator_enable_mode: always_on
+    contacts_overrides:
+      S7: {state: nc}
+    unexposed_pins_add:
+      "2": {device_pin: PC14-OSC32_IN, state: internal, circuit_ref: external_hse_oscillator}
+  external_mcu_controlled:
+    status: candidate
+    oscillator_enable_mode: mcu_controlled
+    contacts_overrides:
+      S7: {state: nc}
+      S8: {state: nc}
+    unexposed_pins_add:
+      "2": {device_pin: PC14-OSC32_IN, state: internal, circuit_ref: external_hse_oscillator}
+      "3": {device_pin: PC15-OSC32_OUT, state: internal, circuit_ref: external_hse_oscillator}
+
+development:
+  ports:
+    north:
+      profiles:
+        CVDBG-SWD:
+          operations:
+            program:
+              verification: unverified
+              toolchains:
+                - {status: candidate, probe: ST-LINK, tool: STM32CubeProgrammer, connection: north, verification: unverified}
+                - {status: candidate, probe: CMSIS-DAP, tool: OpenOCD, connection: north, verification: unverified}
+            recovery: {verification: unverified}
+    service:
+      implemented_access: {kind: legacy_test_pads, signals: [vtref, gnd, swdio, swclk, reset]}
+      candidate: {profile: CVSERVICE-SWD-6, pin_6: nc, status: candidate}
+  contention_groups:
+    pa14_boot: {contacts: [N3, N4], rule: disconnect_n3_driver_before_driving_n4}
+    parallel_swd_probes: {ports: [north, service], rule: only_one_active_probe}
+
+firmware:
+  build_environments:
+    reference: {status: candidate, sdk: STM32CubeG0, ide: STM32CubeIDE, pending: [published_build_configuration]}
