@@ -22,7 +22,7 @@ profile_catalog_ref: "https://raw.githubusercontent.com/craftvia/craftvia-docs/c
 
 interface_ref: "https://raw.githubusercontent.com/craftvia/craftvia-docs/c3eb5de34f23bde8239330162cf61108a8a2372b/standards/core-s-interface-v1.md"
 
-verification_plan_ref: "./verification-plan-v1-rev0.md"
+verification_plan_ref: "./docs/verification-plan-v1-rev0.md"
 
 requirements:
   platform_interface: core-s-v1
@@ -34,10 +34,10 @@ contacts:
   K-NW: {state: assigned, role: gnd, device_pin: VSS/VSSA, package_pin: 5}
   K-NE: {state: assigned, role: gnd, device_pin: VSS/VSSA, package_pin: 5}
   K-SW: {state: assigned, role: power_input, device_pin: VDD/VDDA, package_pin: 4}
-  N1: {state: assigned, role: reset, direction: input, device_pin: PF2-NRST, package_pin: 6, active_level: low, details_ref: "./specification-v1-rev0.md#5-swd-reset-and-boot"}
+  N1: {state: assigned, role: reset, direction: input, device_pin: PF2-NRST, package_pin: 6, active_level: low, details_ref: "./docs/specification-v1-rev0.md#5-swd-reset-and-boot"}
   N2: {state: assigned, role: swdio, direction: bidirectional, device_pin: PA13, package_pin: 24}
-  N3: {state: assigned, role: swclk, direction: input, device_pin: PA14-BOOT0, package_pin: 25, shared_mcu_node: PA14-BOOT0, details_ref: "./specification-v1-rev0.md#5-swd-reset-and-boot"}
-  N4: {state: assigned, role: boot_request, direction: input, device_pin: PA14-BOOT0, package_pin: 25, active_level: high, shared_mcu_node: PA14-BOOT0, details_ref: "./specification-v1-rev0.md#5-swd-reset-and-boot"}
+  N3: {state: assigned, role: swclk, direction: input, device_pin: PA14-BOOT0, package_pin: 25, shared_mcu_node: PA14-BOOT0, details_ref: "./docs/specification-v1-rev0.md#5-swd-reset-and-boot"}
+  N4: {state: assigned, role: boot_request, direction: input, device_pin: PA14-BOOT0, package_pin: 25, active_level: high, shared_mcu_node: PA14-BOOT0, details_ref: "./docs/specification-v1-rev0.md#5-swd-reset-and-boot"}
   N5: {state: assigned, role: gpio, device_pin: PA11, package_pin: 22}
   N6: {state: assigned, role: gpio, device_pin: PA12, package_pin: 23}
   N7: {state: assigned, role: gpio, device_pin: PB8, package_pin: 32}

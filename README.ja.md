@@ -37,7 +37,7 @@ CraftVia Core-S G031は、CraftVia Core-Sインターフェースの最初の実
 - 標準クロック: 内蔵HSI。外付け8 MHz発振器オプションはDNP
 - CADソース: EasyEDA
 
-共通の機械・電気要件は[CraftVia共通ドキュメント](https://github.com/craftvia/craftvia-docs)で定めます。Rev0の外部仕様は[Core定義YAML（英語）](docs/core-s-g031-v1-rev0.yaml)に記載します。公開時の詳細と受入試験は、[公開済み仕様書](docs/specification-v1-rev0.ja.md)と[検証計画](docs/verification-plan-v1-rev0.ja.md)を参照してください。
+共通の機械・電気要件は[CraftVia共通ドキュメント](https://github.com/craftvia/craftvia-docs)で定めます。Rev0の外部仕様は[Core定義YAML（英語）](core-s-g031-v1-rev0.yaml)に記載します。公開時の詳細と受入試験は、[公開済み仕様書](docs/specification-v1-rev0.ja.md)と[検証計画](docs/verification-plan-v1-rev0.ja.md)を参照してください。
 
 ## Repo構成
 
@@ -45,6 +45,7 @@ CraftVia Core-S G031は、CraftVia Core-Sインターフェースの最初の実
 source/                      正本のEasyEDA編集可能ソース
 fabrication/                 正本のGerberパッケージ
 assembly/                    BOM、CPL、組立参考資料
+core-s-g031-v1-rev0.yaml  Core定義YAML（英語正本）
 docs/                        回路図PDFと製品ドキュメント
 product.json                 Web参照用の機械可読製品Metadata
 RELEASE_NOTES.md / RELEASE_NOTES.ja.md
